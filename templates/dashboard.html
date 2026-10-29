@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LGB Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="top-bar">
+
+    <a href="/" class="home-btn">
+        🏠 Home
+    </a>
+
+    <a href="/logout" class="logout-btn">
+        Logout
+    </a>
+
+</div>
+
+<div class="welcome-container">
+
+    <h2 class="welcome-user">
+        ✨ Welcome {{ username }} ✨
+    </h2>
+
+</div>
+<div class="dashboard">
+
+    <h1>🤖 LGB Social Bot Detection Dashboard</h1>
+
+    <div class="dashboard-stats">
+
+        <div class="dashboard-card">
+            <h2>{{ total }}</h2>
+            <p>Total Analyses</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h2 class="bot-count">{{ bots }}</h2>
+            <p>Bots Detected</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h2 class="human-count">{{ humans }}</h2>
+            <p>Humans Detected</p>
+        </div>
+
+    </div>
+
+    <div class="analysis-box">
+
+        <h2>Analyze Tweet</h2>
+
+        <form method="POST">
+
+            <textarea
+                name="tweet"
+                placeholder="Enter Tweet Here..."
+                required>
+            </textarea>
+
+            <button type="submit">
+                Analyze
+            </button>
+
+        </form>
+
+        {% if prediction %}
+
+<div class="result-card">
+
+    <h2>Prediction Result</h2>
+
+    <h1 class="{% if prediction == 'Bot' %}bot-result{% else %}human-result{% endif %}">
+        {{ prediction }}
+    </h1>
+
+    <h3>Confidence: {{ confidence }}%</h3>
+
+</div>
+
+{% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analytics</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="top-bar">
+
+    <a href="/" class="home-btn">
+        🏠 Home
+    </a>
+
+</div>
+
+<div class="dashboard">
+
+    <h1>📊 Analytics Dashboard</h1>
+
+    <!-- Statistics Row -->
+
+    <div class="dashboard-stats">
+
+        <div class="dashboard-card">
+            <h2>{{ total }}</h2>
+            <p>Total Analyses</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h2 class="bot-count">{{ bots }}</h2>
+            <p>Bots Detected</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h2 class="human-count">{{ humans }}</h2>
+            <p>Humans Detected</p>
+        </div>
+
+    </div>
+
+    <!-- Detection Rates -->
+
+    <div class="dashboard-stats">
+
+        <div class="dashboard-card">
+            <h2 class="bot-count">{{ bot_rate }}%</h2>
+            <p>Bot Detection Rate</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h2 class="human-count">{{ human_rate }}%</h2>
+            <p>Human Detection Rate</p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Pie Chart -->
+
+<div class="chart-container">
+
+    <h2>📊 Bot vs Human Distribution</h2>
+
+    <canvas id="botChart"></canvas>
+
+</div>
+
+<div class="chart-container">
+
+    <h2>🎯 Model Accuracy</h2>
+
+    <canvas id="accuracyChart"></canvas>
+
+</div>
+
+<div class="chart-container">
+
+    <h2>📈 Prediction Trend</h2>
+
+    <canvas id="trendChart"></canvas>
+
+</div>
+
+<div class="chart-container">
+
+    <h2>📝 Tweet Length Analysis</h2>
+
+    <canvas id="lengthChart"></canvas>
+
+</div>
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Doughnut Chart
+
+    const pieCtx = document.getElementById('botChart');
+
+    new Chart(pieCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Bots', 'Humans'],
+            datasets: [{
+                data: [{{ bots }}, {{ humans }}],
+                backgroundColor: [
+                    '#ff4d4d',
+                    '#4CAF50'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+
+    // Model Accuracy Chart
+
+    const accuracyCtx = document.getElementById('accuracyChart');
+
+    new Chart(accuracyCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Bot Accuracy', 'Human Accuracy'],
+            datasets: [{
+                label: 'Accuracy %',
+                data: [{{ bot_rate }}, {{ human_rate }}],
+                backgroundColor: [
+                    '#36A2EB',
+                    '#36A2EB'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
+        }
+    });
+
+    // Trend Chart
+
+    const trendCtx = document.getElementById('trendChart');
+
+    new Chart(trendCtx, {
+        type: 'line',
+        data: {
+            labels: ['Start', 'Current'],
+            datasets: [{
+                label: 'Predictions',
+                data: [0, {{ total }}],
+                borderColor: '#36A2EB',
+                fill: false,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+    // Tweet Length Chart
+
+    const lengthCtx = document.getElementById('lengthChart');
+
+    new Chart(lengthCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Short', 'Medium', 'Long'],
+            datasets: [{
+                label: 'Tweet Length',
+                data: [5, 10, 1],
+                backgroundColor: '#b39ddb'
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+});
+
+</script>
+</body>
+</html>

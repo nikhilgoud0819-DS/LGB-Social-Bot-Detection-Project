@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LGB Social Bot Detection</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="hero">
+
+    <h1>🤖 AI Bot Detection</h1>
+
+    <p>
+        LGB: Language Model and Graph Neural Network-Driven Social Bot Detection
+    </p>
+
+    <div class="buttons">
+
+        <a href="/login" class="btn login">
+            Login
+        </a>
+
+        <a href="/register" class="btn register">
+            Register
+        </a>
+
+        <a href="/dashboard" class="btn admin">
+            Dashboard
+        </a>
+
+        <a href="/history" class="btn history">
+            History
+        </a>
+
+    </div>
+
+</div>
+
+<div class="stats">
+
+    <div class="card">
+        🚀
+        <h2>{{ total_tweets }}</h2>
+        <p>Tweets Analyzed</p>
+    </div>
+
+    <div class="card">
+        🎯
+        <h2>{{ accuracy }}%</h2>
+        <p>Accuracy</p>
+    </div>
+
+    <div class="card">
+        ⚡
+        <h2>{{ latest_result }}</h2>
+        <p>Latest Result</p>
+    </div>
+
+</div>
+
+<div class="features">
+
+    <h2>Features</h2>
+
+    <div class="feature-box">
+
+        <a href="/dashboard" class="feature-link">
+    <div class="feature">
+        ⚡
+        <h3>Fast Detection</h3>
+        <p>Realtime Classification</p>
+    </div>
+</a>
+        <a href="/analytics" class="feature-link">
+
+    <div class="feature">
+
+        📊
+
+        <h3>Analytics</h3>
+
+        <p>Visual Insights</p>
+
+    </div>
+
+</a>
+        <div class="feature">
+            🔒
+            <h3>Secure</h3>
+            <p>Admin Control</p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
