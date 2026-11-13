@@ -1,0 +1,11 @@
+# Local database
+database.db
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Environment files
+.env
+.venv/
+venv/
