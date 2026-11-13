@@ -47,3 +47,4 @@ The project includes a dataset used for text classification. Review the dataset 
 This project is intended for educational and demonstration purposes. Predictions depend on the dataset and the trained model and should not be treated as definitive proof that an account is a social bot.
 
 ## Author
+Nikhil Goud Panjala
